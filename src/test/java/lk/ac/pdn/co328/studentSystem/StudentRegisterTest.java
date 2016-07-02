@@ -1,6 +1,10 @@
 package lk.ac.pdn.co328.studentSystem;
 import org.junit.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+import static java.util.Collections.sort;
 
 public class StudentRegisterTest {
     StudentRegister register;
@@ -8,7 +12,7 @@ public class StudentRegisterTest {
     @Before
     public void setupTest()
     {
-        System.out.println("A new test is starting.");
+        register = new StudentRegister();
     }
 
     @After
@@ -29,10 +33,11 @@ public class StudentRegisterTest {
         System.out.println("All tests are done");
     }
 
+
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
+
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -51,14 +56,23 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudentTwice()
    {
-       // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       try
+       {
+           register.addStudent(new Student(3, "nimal", "kumara"));
+           register.addStudent(new Student(3, "fawzan", "mohomad"));
+
+           Assert.fail("Test AddStudent Twice failed");
+       }
+       catch (Exception ex)
+       {
+
+       }
+
    }
 
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -77,7 +91,6 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
@@ -95,4 +108,62 @@ public class StudentRegisterTest {
         expected.add(5);
         Assert.assertTrue(numbers.equals(expected));
     }
+    @Test
+    public  void testFindStudentsByName(){
+        try
+        {
+            register.addStudent(new Student(6, "ruwan", "tharaka"));
+            register.addStudent(new Student(7, "nimal", "kumara"));
+            register.addStudent(new Student(8, "mayan", "chamara"));
+            register.addStudent(new Student(9, "nimal", "kumara"));
+            register.addStudent(new Student(10, "gayan", "chamara"));
+            register.addStudent(new Student(11, "ruwan", "tharuka"));
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Find Students By Name failed");
+        }
+        //Testing for first name match
+        ArrayList<Student> studentsT1 = register.findStudentsByName("ruwan");
+        ArrayList<Student> expectedT1 = new ArrayList<Student>();
+        expectedT1.add(new Student(6, "ruwan", "tharaka"));
+        expectedT1.add(new Student(11, "ruwan", "tharuka"));
+
+
+        Assert.assertTrue(studentsT1.equals(expectedT1));
+
+        //Testing for last name match
+        ArrayList<Student> studentsT2 = register.findStudentsByName("chamara");
+        ArrayList<Student> expectedT2 = new ArrayList<Student>();
+        expectedT2.add(new Student(8, "mayan", "chamara"));
+        expectedT2.add(new Student(10, "gayan", "chamara"));
+
+        Assert.assertTrue(studentsT2.equals(expectedT2));
+
+        //Testing for first and last name match
+        ArrayList<Student> studentsT3 = register.findStudentsByName("nimal");
+        ArrayList<Student> expectedT3 = new ArrayList<Student>();
+        expectedT3.add(new Student(7, "nimal", "kumara"));
+        expectedT3.add(new Student(9, "nimal", "kumara"));
+
+        Assert.assertTrue(studentsT3.equals(expectedT3));
+    }
+    @Test
+    public void testReset(){
+        try
+        {
+            register.addStudent(new Student(12, "pawan", "tharaka"));
+            register.addStudent(new Student(23, "lawan", "kumara"));
+
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Reset registry failed");
+        }
+
+        register.reset();
+
+        Assert.assertTrue(register.isEmpty());
+    }
+
 }
