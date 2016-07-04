@@ -8,6 +8,7 @@ public class StudentRegisterTest {
     @Before
     public void setupTest() {
         System.out.println("A new test is starting.");
+        register = new StudentRegister();
     }
 
     @After
@@ -27,7 +28,6 @@ public class StudentRegisterTest {
 
    @Test
     public void testAddStudent() {
-       register = new StudentRegister();
        try {
            register.addStudent(new Student(2, "nimal", "kumara"));
            register.addStudent(new Student(5, "fawzan", "mohomad"));
@@ -44,7 +44,6 @@ public class StudentRegisterTest {
    @Test(expected=Exception.class)
     public void testAddStudentTwice() throws Exception {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       register = new StudentRegister();
 
        register.addStudent(new Student(1, "namal", "sameera"));
        register.addStudent(new Student(1, "sanath", "ranjan"));
@@ -54,8 +53,6 @@ public class StudentRegisterTest {
 
     @Test
     public void testRemoveStudent() {
-        register = new StudentRegister();
-
         try {
             register.addStudent(new Student(2, "nimal", "kumara"));
             register.addStudent(new Student(1, "ruwan", "tharaka"));
@@ -71,8 +68,6 @@ public class StudentRegisterTest {
 
     @Test
     public void testGetRegNumbers() {
-        register = new StudentRegister();
-
         try {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
             register.addStudent(new Student(2, "nimal", "kumara"));
