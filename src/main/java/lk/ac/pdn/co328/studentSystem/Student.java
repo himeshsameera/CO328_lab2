@@ -1,7 +1,6 @@
 package lk.ac.pdn.co328.studentSystem;
 
-public class Student
-{
+public class Student {
     private int id;
     private String firstName;
     private String lastName;
