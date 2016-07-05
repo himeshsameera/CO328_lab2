@@ -42,28 +42,38 @@ public class StudentRegister
         return  null;
     }
 
+    //Check weather registry list is empty or not if empty it returns true
+    public boolean isEmpty(){
+        if (studentList.isEmpty()){
+            return true;
+        }else {
+            return false;
+        }
+    }
     // Cleans all the data from the student register
     public void reset()
     {
-        studentList = null;
+        studentList = new ArrayList<Student>();
+
     }
 
     // Finds all the students that has the given name as a part of their name.
-    public ArrayList<Student> findStudentsByName(String name)
+    public ArrayList<Student> findStudentsByName(String name) throws Exception
     {
         ArrayList<Student> students = new ArrayList<Student>();
         for (int i = 0; i<studentList.size(); i++)
         {
             if(studentList.get(i).getFirstName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
-			
-			
-            if(studentList.get(i).getLastName().contains(name))
+            else if(studentList.get(i).getLastName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
+        }
+        if (students.isEmpty()){
+            throw new Exception("No match found !");
         }
         return students;
     }
