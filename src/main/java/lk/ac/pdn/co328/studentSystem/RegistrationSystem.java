@@ -32,7 +32,7 @@ public class RegistrationSystem
                         viewStudent();
                         break;
                     case 4:
-                        findStudents();
+                        findStudentsByName();
                         break;
                     case 5:
                         cleanRegister();
@@ -153,7 +153,7 @@ public class RegistrationSystem
     }
 
     //find and print the details of students with the given name
-    private static void findStudents()
+    private static void findStudentsByName()
     {
         String name = stdin.next();
         ArrayList<Student> list = register.findStudentsByName(name);
