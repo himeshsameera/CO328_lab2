@@ -1,5 +1,7 @@
 package lk.ac.pdn.co328.studentSystem;
 
+import javax.rmi.CORBA.StubDelegate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem
@@ -28,6 +30,9 @@ public class RegistrationSystem
                         break;
                     case 3:
                         viewStudent();
+                        break;
+                    case 4:
+                        findStudents();
                         break;
                     default:
                         System.out.println("Please select an available feature");
@@ -141,6 +146,19 @@ public class RegistrationSystem
         else
         {
             System.out.println("Student not found");
+        }
+    }
+
+    //find and print the details of students with the given name
+    private static void findStudents()
+    {
+        String name = stdin.next();
+        ArrayList<Student> list = register.findStudentsByName(name);
+
+        for(int i = 0; i<list.size(); i++)
+        {
+            System.out.println("Name: " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
+            System.out.println("ID: "+ list.get(i).getId());
         }
     }
 }
