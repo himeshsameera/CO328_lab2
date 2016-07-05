@@ -34,6 +34,9 @@ public class RegistrationSystem
                     case 4:
                         findStudents();
                         break;
+                    case 5:
+                        cleanRegister();
+                        break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -160,5 +163,11 @@ public class RegistrationSystem
             System.out.println("Name: " + list.get(i).getFirstName() + " " + list.get(i).getLastName());
             System.out.println("ID: "+ list.get(i).getId());
         }
+    }
+
+    //clean the student register
+    private static void cleanRegister()
+    {
+        register.reset();
     }
 }
