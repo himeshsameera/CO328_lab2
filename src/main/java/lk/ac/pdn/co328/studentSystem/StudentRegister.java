@@ -2,7 +2,7 @@ package lk.ac.pdn.co328.studentSystem;
 import java.util.ArrayList;
 
 public class StudentRegister {
-    private ArrayList<Student> studentList = new ArrayList<Student>();
+    public ArrayList<Student> studentList = new ArrayList<Student>();
 
     // Adds a new student to the system
     public void addStudent(Student st) throws Exception {

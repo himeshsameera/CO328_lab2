@@ -83,4 +83,36 @@ public class StudentRegisterTest {
         expected.add(5);
         Assert.assertTrue(numbers.equals(expected));
     }
+
+    @Test
+    public void testFindStudentsByName() {
+        try {
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+            register.addStudent(new Student(2, "nimal", "ruwan"));
+            register.addStudent(new Student(5, "gayan", "chamara"));
+        }
+        catch (Exception ex) {
+            Assert.fail("Adding student failed");
+        }
+
+        ArrayList<Student> expected = new ArrayList<Student>();
+        expected.add(new Student(1, "ruwan", "tharaka"));
+        expected.add(new Student(2, "nimal", "ruwan"));
+
+        System.out.println("Testing Find Students By Name");
+        ArrayList<Student> actual = register.findStudentsByName("ruwan");
+
+        int index = 0; boolean flag = true;
+        for (Student s : actual) {
+            if (!s.getFirstName().equals(expected.get(index).getFirstName())) {
+                flag = false;
+                break;
+            } else if (!s.getLastName().equals(expected.get(index++).getLastName())) {
+                flag = false;
+                break;
+            }
+        }
+
+        Assert.assertTrue(flag);
+    }
 }
