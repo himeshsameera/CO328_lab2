@@ -58,7 +58,7 @@ public class StudentRegister
     }
 
     // Finds all the students that has the given name as a part of their name.
-    public ArrayList<Student> findStudentsByName(String name)
+    public ArrayList<Student> findStudentsByName(String name) throws Exception
     {
         ArrayList<Student> students = new ArrayList<Student>();
         for (int i = 0; i<studentList.size(); i++)
@@ -71,6 +71,9 @@ public class StudentRegister
             {
                 students.add(studentList.get(i));
             }
+        }
+        if (students.isEmpty()){
+            throw new Exception("No match found !");
         }
         return students;
     }

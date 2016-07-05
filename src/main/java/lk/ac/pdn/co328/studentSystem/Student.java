@@ -1,6 +1,6 @@
 package lk.ac.pdn.co328.studentSystem;
 import java.lang.*;
-public class Student extends Object
+public class Student
 {
     private int id;
     private String firstName;
@@ -33,6 +33,14 @@ public class Student extends Object
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 
     public int getId() {
         return id;

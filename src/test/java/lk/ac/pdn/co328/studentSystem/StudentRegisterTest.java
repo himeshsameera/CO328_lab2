@@ -123,30 +123,34 @@ public class StudentRegisterTest {
         {
             Assert.fail("Find Students By Name failed");
         }
-        //Testing for first name match
-        ArrayList<Student> studentsT1 = register.findStudentsByName("ruwan");
-        ArrayList<Student> expectedT1 = new ArrayList<Student>();
-        expectedT1.add(new Student(6, "ruwan", "tharaka"));
-        expectedT1.add(new Student(11, "ruwan", "tharuka"));
+        try {
+            //Testing for first name match
+            ArrayList<Student> studentsT1 = register.findStudentsByName("ruwan");
+            ArrayList<Student> expectedT1 = new ArrayList<Student>();
+            expectedT1.add(new Student(6, "ruwan", "tharaka"));
+            expectedT1.add(new Student(11, "ruwan", "tharuka"));
 
 
-        Assert.assertTrue(studentsT1.equals(expectedT1));
+            Assert.assertTrue(studentsT1.equals(expectedT1));
 
-        //Testing for last name match
-        ArrayList<Student> studentsT2 = register.findStudentsByName("chamara");
-        ArrayList<Student> expectedT2 = new ArrayList<Student>();
-        expectedT2.add(new Student(8, "mayan", "chamara"));
-        expectedT2.add(new Student(10, "gayan", "chamara"));
+            //Testing for last name match
+            ArrayList<Student> studentsT2 = register.findStudentsByName("chamara");
+            ArrayList<Student> expectedT2 = new ArrayList<Student>();
+            expectedT2.add(new Student(8, "mayan", "chamara"));
+            expectedT2.add(new Student(10, "gayan", "chamara"));
 
-        Assert.assertTrue(studentsT2.equals(expectedT2));
+            Assert.assertTrue(studentsT2.equals(expectedT2));
 
-        //Testing for first and last name match
-        ArrayList<Student> studentsT3 = register.findStudentsByName("nimal");
-        ArrayList<Student> expectedT3 = new ArrayList<Student>();
-        expectedT3.add(new Student(7, "nimal", "kumara"));
-        expectedT3.add(new Student(9, "nimal", "kumara"));
+            //Testing for first and last name match
+            ArrayList<Student> studentsT3 = register.findStudentsByName("nimal");
+            ArrayList<Student> expectedT3 = new ArrayList<Student>();
+            expectedT3.add(new Student(7, "nimal", "kumara"));
+            expectedT3.add(new Student(9, "nimal", "kumara"));
 
-        Assert.assertTrue(studentsT3.equals(expectedT3));
+            Assert.assertTrue(studentsT3.equals(expectedT3));
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
     @Test
     public void testReset(){
