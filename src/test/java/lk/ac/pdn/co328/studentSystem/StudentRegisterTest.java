@@ -1,6 +1,7 @@
 package lk.ac.pdn.co328.studentSystem;
 import org.junit.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class StudentRegisterTest {
     StudentRegister register;
@@ -52,7 +53,15 @@ public class StudentRegisterTest {
     public void testAddStudentTwice()
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       register = new StudentRegister();
+       try{
+           register.addStudent(new Student(1, "nimal", "kumara"));
+           register.addStudent(new Student(1, "ruwan", "tharaka"));
+       }catch(Exception ex) {
+           System.out.println("Duplicate Entry found for same Registration Number");
+       }
+       ArrayList<Student> student = register.findStudentsByName("ruwan");
+       Assert.assertNotNull("student was entered",student);
    }
 
     @Test
