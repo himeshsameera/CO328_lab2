@@ -1,5 +1,6 @@
 package lk.ac.pdn.co328.studentSystem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem
@@ -21,13 +22,21 @@ public class RegistrationSystem
                         return;
                     case 1:
                         addStudent();
-
                         break;
                     case 2:
                         removeStudent();
                         break;
                     case 3:
                         viewStudent();
+                        break;
+                    case 4:
+                        searchStudentByName();
+                        break;
+                    case 5:
+                        cleanStudentRegister();
+                        break;
+                    case 6:
+                        getAllStudent();
                         break;
                     default:
                         System.out.println("Please select an available feature");
@@ -143,4 +152,43 @@ public class RegistrationSystem
             System.out.println("Student not found");
         }
     }
+
+    // Shows all the registered students who has the given name
+    public static void searchStudentByName(){
+        String name = null;
+        System.out.println("Enter student name");
+        try
+        {
+            name = stdin.next(); //To get first string of a line
+            stdin.nextLine(); // To clear the input
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Invalid inputs.");
+            return;
+        }
+
+        ArrayList<Student> studentList = register.findStudentsByName(name);
+        for (Student student: studentList)
+        {
+            System.out.println(student.getId()+" "+student.getFirstName()+" "+student.getLastName());
+        }
+
+    }
+    //Removes all the data from the student register
+    public static void cleanStudentRegister(){
+        register.reset();
+    }
+
+    //Get all the details of students
+    public static void getAllStudent(){
+        ArrayList<Student> allStudents = register.getAllStudents();
+        for (Student student: allStudents)
+        {
+            System.out.println(student.getId()+" "+student.getFirstName()+" "+student.getLastName());
+        }
+    }
+
+
+
 }
