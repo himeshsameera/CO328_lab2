@@ -8,6 +8,7 @@ public class StudentRegisterTest {
     @Before
     public void setupTest()
     {
+        register = new StudentRegister();
         System.out.println("A new test is starting.");
     }
 
