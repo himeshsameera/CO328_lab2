@@ -1,5 +1,6 @@
 package lk.ac.pdn.co328.studentSystem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem
@@ -29,6 +30,9 @@ public class RegistrationSystem
                     case 3:
                         viewStudent();
                         break;
+                    case 4:
+                        viewDetails();
+                        break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -47,7 +51,7 @@ public class RegistrationSystem
         System.out.println("  1 - Add a student");
         System.out.println("  2 - Remove a student");
         System.out.println("  3 - Search a student by registration number");
-        System.out.println("  4 - Search students by name [Feature implementation ongoing]");
+        System.out.println("  4 - Search students by name");
         System.out.println("  5 - Clean student register [Feature implementation ongoing]");
         System.out.println("  6 - Get all the students [Feature implementation ongoing]");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
@@ -137,6 +141,42 @@ public class RegistrationSystem
         {
             System.out.println("First name : " + student.getFirstName());
             System.out.println("Last name : " + student.getLastName());
+        }
+        else
+        {
+            System.out.println("Student not found");
+        }
+    }
+
+    private static void viewDetails(){
+        String name;
+        System.out.println("Enter the name");
+        try
+        {
+            name = stdin.nextLine();
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Invalid inputs.");
+            return;
+        }
+
+        ArrayList<Student> student;
+        try
+        {
+            student = register.findStudentsByName(name);
+            System.out.println("get the values");
+            System.out.println(student);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Error in searching student : " + ex.getMessage());
+            return;
+        }
+
+        if(student != null)
+        {
+            System.out.println(student);
         }
         else
         {
