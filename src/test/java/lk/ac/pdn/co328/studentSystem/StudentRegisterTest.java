@@ -38,7 +38,7 @@ public class StudentRegisterTest {
        System.out.println("Testing add student method");
 
        Student student = register.findStudent(2);
-       Assert.assertEquals("Student Id is wrong",2,student.getId());
+       Assert.assertEquals("Student Id is wrong", 2, student.getId());
     }
 
    @Test(expected=Exception.class)
@@ -63,7 +63,7 @@ public class StudentRegisterTest {
         }
         register.removeStudent(1);
         Student student = register.findStudent(1);
-        Assert.assertNull("student was not removed",student);
+        Assert.assertNull("student was not removed", student);
     }
 
     @Test
@@ -115,4 +115,22 @@ public class StudentRegisterTest {
 
         Assert.assertTrue(flag);
     }
+
+    @Test
+    public void testReset() {
+        try {
+            register.addStudent(new Student(2, "nimal", "kumara"));
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+            register.addStudent(new Student(5, "gayan", "chamara"));
+        }
+        catch (Exception ex) {
+            Assert.fail("Add student failed");
+        }
+        System.out.println("Testing reset");
+
+        register.reset();
+
+        Assert.assertNull(register.studentList);
+    }
+
 }
