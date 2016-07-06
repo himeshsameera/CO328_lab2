@@ -52,8 +52,26 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudentTwice()
    {
-       // Implement your test code here. Adding a student with same registration number twice should generate an exception.
+       try {
+           register.addStudent(new Student(5, "Dhanika", "Thathsara"));
+           register.addStudent(new Student(4, "Tharana", "Sanjuka"));
+           register.addStudent(new Student(6, "Nirmal", "Munasinghe"));
+           register.addStudent(new Student(9, "Ashok", "Kumar"));
+           register.addStudent(new Student(1, "Janka", "Abeyrathne"));
+       }
+       catch (Exception ex)
+       {
+           fail("Tryning to add a registration number that already exist.");
+       }
+
+       System.out.println("Testing identical registration numbers");
+
+       Student student1 = register.findStudent(4);
+       assertEquals("Adding a wrong ID(this id is alredy exists)",4,student1.getId());
+
+       /* Implement your test code here. Adding a student with same registration number twice should generate an exception.
        Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       */
    }
 
     @Test
