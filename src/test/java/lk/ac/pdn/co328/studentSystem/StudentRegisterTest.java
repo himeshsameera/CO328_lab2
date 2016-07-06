@@ -67,7 +67,7 @@ public class StudentRegisterTest {
            // Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
        }
 
-       // if the stuRegister allow to insert doublicates numbers shoud have 7,8,7  But where it includes only 7,8
+       // if the stuRegister allow to insert doublicates numbers shoud have 7,8,7  But where it includes only 7,8  .
        ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
        ArrayList<Integer> expected = new ArrayList<Integer>();
        expected.add(7);
