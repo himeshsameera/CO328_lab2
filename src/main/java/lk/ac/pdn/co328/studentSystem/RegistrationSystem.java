@@ -33,6 +33,9 @@ public class RegistrationSystem
                     case 4:
                         viewDetails();
                         break;
+                    case 5:
+                        cleanRegister();
+                        break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -44,6 +47,10 @@ public class RegistrationSystem
         }
     }
 
+    private static void cleanRegister() {
+        register.reset();
+    }
+
     private static void printSelection()
     {
         System.out.println("Select an option : ");
@@ -52,7 +59,7 @@ public class RegistrationSystem
         System.out.println("  2 - Remove a student");
         System.out.println("  3 - Search a student by registration number");
         System.out.println("  4 - Search students by name");
-        System.out.println("  5 - Clean student register [Feature implementation ongoing]");
+        System.out.println("  5 - Clean student register");
         System.out.println("  6 - Get all the students [Feature implementation ongoing]");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
         System.out.println("  8 - Load from file/DB [Feature implementation ongoing]");
@@ -147,40 +154,26 @@ public class RegistrationSystem
             System.out.println("Student not found");
         }
     }
-
+    //TODO
     private static void viewDetails(){
         String name;
-        System.out.println("Enter the name");
-        try
-        {
-            name = stdin.nextLine();
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Invalid inputs.");
-            return;
-        }
+        System.out.println("Enter the part of the name");
+        name = stdin.nextLine();
+        System.out.println(name);
+        ArrayList<Student> students;
 
-        ArrayList<Student> student;
         try
         {
-            student = register.findStudentsByName(name);
-            System.out.println("get the values");
-            System.out.println(student);
+            students = register.findStudentsByName(name);
+            if(students.size()>0) {
+                for (Student student : students) System.out.println(student.toString());
+            }
+            else System.out.println("No result for the given name");
         }
         catch (Exception ex)
         {
             System.out.println("Error in searching student : " + ex.getMessage());
             return;
-        }
-
-        if(student != null)
-        {
-            System.out.println(student);
-        }
-        else
-        {
-            System.out.println("Student not found");
         }
     }
 }

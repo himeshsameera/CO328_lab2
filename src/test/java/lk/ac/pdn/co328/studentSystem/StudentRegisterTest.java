@@ -89,5 +89,32 @@ public class StudentRegisterTest {
         expected.add(2);
         expected.add(3);
         Assert.assertTrue(numbers.equals(expected));
+
+    }
+
+    @Test
+    /* TODO
+     * When entered a name of student in test failed with the exception
+     * java.lang.OutOfMemoryError: Java heap space
+     * Try to fix and still no way
+     */
+    public void testFindStudentsByName(){
+        System.out.println("Testing find students by name method");
+        ArrayList<Student> students = register.findStudentsByName("kaveen");
+        Assert.assertNotNull("student is there",students);
+    }
+
+    @Test
+    public void testReset(){
+        register.reset();
+        System.out.println("Testing reset method");
+        ArrayList<Integer> numbers =null;
+        try {
+            numbers = register.getAllRegistrationNumbers();
+            Assert.assertNotNull("register is not cleared",numbers);
+        }catch (NullPointerException ex){
+            System.out.println("Register is cleared");
+        }
+
     }
 }
