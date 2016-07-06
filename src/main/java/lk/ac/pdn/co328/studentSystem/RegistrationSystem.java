@@ -2,7 +2,13 @@ package lk.ac.pdn.co328.studentSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/* TODO
+ * Adding duplicate elements to same reg number is happenning
+ * need to fix that bug
+ * perfomance is reduced
+ * need to check before give the chance to enter the name
+ * CHECK
+ */
 public class RegistrationSystem
 {
     static Scanner stdin = new Scanner(System.in);;
