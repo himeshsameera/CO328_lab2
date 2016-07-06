@@ -48,12 +48,35 @@ public class StudentRegisterTest {
        Assert.assertEquals("Student Id is wrong",2,student.getId());
    }
 
+
    @Test
     public void testAddStudentTwice()
-   {
-       // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+   {    // Implement your test code here. Adding a student with same registration number twice should generate an exception.
+
+       register = new StudentRegister();
+       try
+       {
+           register.addStudent(new Student(7, "manori", "priyadarshani"));
+           register.addStudent(new Student(8, "nimali", "seuwandi"));
+           register.addStudent(new Student(7, "manori", "priyadarshani"));
+       }
+
+       catch (Exception ex)
+       {
+           System.out.println("student register does not allow to insert doublicate");
+           // Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       }
+
+       // if the stuRegister allow to insert doublicates numbers shoud have 7,8,7  But where it includes only 7,8
+       ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
+       ArrayList<Integer> expected = new ArrayList<Integer>();
+       expected.add(7);
+       expected.add(8);
+       Assert.assertTrue(numbers.equals(expected));
+
    }
+
+
 
     @Test
     public void testRemoveStudent()

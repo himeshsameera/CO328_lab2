@@ -15,6 +15,7 @@ public class StudentRegister
             }
         }
         studentList.add(st);
+
     }
 
     // Remove a student from the system
