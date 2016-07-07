@@ -42,6 +42,17 @@ public class StudentRegister
         return  null;
     }
 
+
+
+    //Checking the registry list is empty or not
+    public boolean isEmpty(){
+        if (studentList.isEmpty()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     // Cleans all the data from the student register
     public void reset()
     {
