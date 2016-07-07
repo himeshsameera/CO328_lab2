@@ -1,8 +1,8 @@
 package lk.ac.pdn.co328.studentSystem;
 import java.util.ArrayList;
 
-public class StudentRegister
-{
+public class StudentRegister {
+
     private ArrayList<Student> studentList = new ArrayList<Student>();
 
     // Adds a new student to the system
@@ -32,6 +32,9 @@ public class StudentRegister
     //Finds the student with the given registration number
     public Student findStudent(int regNo)
     {
+        if (studentList == null)
+            return null;
+
         for (int i = 0; i<studentList.size(); i++)
         {
             if(studentList.get(i).getId() == regNo)
@@ -52,17 +55,21 @@ public class StudentRegister
     public ArrayList<Student> findStudentsByName(String name)
     {
         ArrayList<Student> students = new ArrayList<Student>();
+
+        if (studentList == null)
+            return null;
+
         for (int i = 0; i<studentList.size(); i++)
         {
             if(studentList.get(i).getFirstName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
 			
 			
             if(studentList.get(i).getLastName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
         }
         return students;
@@ -78,4 +85,16 @@ public class StudentRegister
         }
         return  regNumbers;
     }
+
+    //Gives all the  students.
+    public ArrayList<Student> getAllStudents()
+    {
+        ArrayList<Student> allStudents = new ArrayList<Student>();
+        for (Student student: studentList)
+        {
+            allStudents.add(student);
+        }
+        return  allStudents;
+    }
+
 }
