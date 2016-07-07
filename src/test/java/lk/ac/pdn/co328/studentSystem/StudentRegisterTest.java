@@ -142,7 +142,7 @@ public class StudentRegisterTest {
 
         ArrayList<Student> expected = new ArrayList<Student>();
         expected.add(new Student(2, "nimal", "kumara"));
-        expected.add(new Student(3, "kumara", "nimal"));
+        expected.add(new Student(3, "kumara", "aaa"));
 
         Assert.assertTrue(students.equals(expected));
     }
