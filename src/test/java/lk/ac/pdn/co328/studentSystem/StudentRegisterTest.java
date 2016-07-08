@@ -25,7 +25,7 @@ public class StudentRegisterTest {
     @After
     public void finishTest()
     {
-        System.out.println("Test finished\n");
+        System.out.println("Test finished");
     }
 
     @BeforeClass
