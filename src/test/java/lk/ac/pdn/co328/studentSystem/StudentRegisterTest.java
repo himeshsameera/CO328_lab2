@@ -79,7 +79,9 @@ public class StudentRegisterTest {
     {
         try
         {
-            register.addStudent(new Student(5, "gayan", "chamara"));
+            register.addStudent(new Student(2, "nimal", "kumara"));
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+-           register.addStudent(new Student(5, "gayan", "chamara"));
         }
         catch (Exception ex)
         {
@@ -95,6 +97,8 @@ public class StudentRegisterTest {
     {
         try
         {
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+-           register.addStudent(new Student(2, "nimal", "kumara"));
             register.addStudent(new Student(5, "gayan", "chamara"));
         }
         catch (Exception ex)
