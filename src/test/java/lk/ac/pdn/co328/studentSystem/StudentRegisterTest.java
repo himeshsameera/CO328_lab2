@@ -56,7 +56,7 @@ public class StudentRegisterTest {
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
        //Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
-       register = new StudentRegister();
+      
        String expected = "StudentID already exists in the register";
        String actual = null;
        try{
@@ -144,7 +144,7 @@ public class StudentRegisterTest {
         expected.add(s1);
         expected.add(s3);
         expected.add(s4);
-        
+
         ArrayList<Student> actual = register.findStudentsByName("ruwan");
 
         Assert.assertTrue(actual.equals(expected));
