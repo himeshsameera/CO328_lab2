@@ -68,6 +68,8 @@ public class RegistrationSystem
             return;
         }
 
+       
+
         System.out.println("Enter first name");
         String firstName = stdin.nextLine();
         System.out.println("Enter last name");
