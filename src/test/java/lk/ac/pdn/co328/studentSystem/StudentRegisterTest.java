@@ -133,6 +133,14 @@ public class StudentRegisterTest {
             Assert.fail("Adding student failed");
         }
 
+        ArrayList<Student> expected = new ArrayList<Student>();
+        expected.add(new Student(1, "ruwan", "tharaka"));
+        expected.add(new Student(3, "ruwan", "chanaka"));
+        expected.add(new Student(4, "shanaka", "ruwan"));
+
+        ArrayList<Student> actual = register.findStudentsByName("ruwan");
+
+        Assert.assertEquals(expected,actual);
 
     }
 }
