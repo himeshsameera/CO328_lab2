@@ -141,6 +141,6 @@ public class RegistrationSystem {
     }
 
     private static void cleanStudentRegister() {
-        register.reset();
+        register.reset(); //clean the regiter
     }
 }

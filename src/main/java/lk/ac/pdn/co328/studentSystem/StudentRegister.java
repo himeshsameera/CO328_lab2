@@ -43,7 +43,7 @@ public class StudentRegister {
     // Cleans all the data from the student register
     public void reset() {
         studentList.clear();
-        //studentList = null;
+        //studentList = null; // no need to give the array list a null reference since we could use this afterwords
     }
 
     // Finds all the students that has the given name as a part of their name.
