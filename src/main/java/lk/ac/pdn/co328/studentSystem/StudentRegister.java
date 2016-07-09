@@ -7,11 +7,13 @@ public class StudentRegister
 
     // Adds a new student to the system
     public void addStudent(Student st) throws Exception {
+        //throw new Exception("StudentID already exists in the register");
         for (Student student:studentList)
         {
             if(student.getId() == st.getId())
             {
                 throw new Exception("StudentID already exists in the register");
+
             }
         }
         studentList.add(st);
@@ -56,13 +58,13 @@ public class StudentRegister
         {
             if(studentList.get(i).getFirstName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
 			
 			
             if(studentList.get(i).getLastName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
         }
         return students;

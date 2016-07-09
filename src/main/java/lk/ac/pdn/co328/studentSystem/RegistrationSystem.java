@@ -13,7 +13,7 @@ public class RegistrationSystem
         {
             try
             {
-                printSelection();
+                printSelection();//Ctrl+shift+I
                 int command = Integer.parseInt(stdin.nextLine());
                 switch (command)
                 {

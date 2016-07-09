@@ -3,12 +3,45 @@ import org.junit.*;
 import java.util.ArrayList;
 
 public class StudentRegisterTest {
+    @Test
+    public void findStudentsByName() throws Exception {
+        ArrayList<Student> actual = null;
+        ArrayList<Student> expected = new ArrayList<Student>();
+
+        Student s1 = new Student(2, "nimal", "kumara");
+        Student s2 = new Student(5, "nimal", "mohomad");
+        Student s3 = new Student(6, "ruchira", "senarath");
+
+
+        try
+        {
+            register.addStudent(s1);
+            register.addStudent(s2);
+            register.addStudent(s3);
+
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed");
+
+        }
+
+        actual = register.findStudentsByName("nimal");
+        expected.add(s1 );
+        expected.add(s2);
+
+        Assert.assertTrue(actual.equals(expected));
+
+
+    }
+
     StudentRegister register;
 
     @Before
     public void setupTest()
     {
         System.out.println("A new test is starting.");
+        register = new StudentRegister();
     }
 
     @After
@@ -32,7 +65,7 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
+       //register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -52,13 +85,26 @@ public class StudentRegisterTest {
     public void testAddStudentTwice()
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       //Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+    String expected = "StudentID already exists in the register";
+    String actual = null;
+       try{
+           register.addStudent(new Student(2,"nimal","kumara"));
+           register.addStudent(new Student(2,"fawzan","mohomad"));
+
+       }catch(Exception ex){
+           //Assert.fail("Adding student failed");
+           System.out.println(ex.getMessage());
+        }
+       System.out.println("Testing add student twice method");
+
+
    }
 
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
+        //register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -77,7 +123,7 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
+        //register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
