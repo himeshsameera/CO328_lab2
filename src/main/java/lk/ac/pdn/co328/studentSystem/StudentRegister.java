@@ -59,13 +59,13 @@ public class StudentRegister
         {
             if(studentList.get(i).getFirstName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
 			
 			
             if(studentList.get(i).getLastName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
         }
         return students;
@@ -75,10 +75,11 @@ public class StudentRegister
     public ArrayList<Integer> getAllRegistrationNumbers()
     {
         ArrayList<Integer> regNumbers = new ArrayList<Integer>();
-        for (Student student: studentList)
-        {
-            regNumbers.add(student.getId());
-        }
+        try {
+            for (Student student : studentList) {
+                regNumbers.add(student.getId());
+            }
+        }catch(Exception e){}
         return  regNumbers;
     }
 }
