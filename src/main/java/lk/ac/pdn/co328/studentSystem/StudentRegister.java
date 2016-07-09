@@ -1,9 +1,13 @@
+/*
+E/12/302
+ */
 package lk.ac.pdn.co328.studentSystem;
 import java.util.ArrayList;
 
 public class StudentRegister
 {
     private ArrayList<Student> studentList = new ArrayList<Student>();
+
 
     // Adds a new student to the system
     public void addStudent(Student st) throws Exception {
@@ -32,39 +36,38 @@ public class StudentRegister
     //Finds the student with the given registration number
     public Student findStudent(int regNo)
     {
-        for (int i = 0; i<studentList.size(); i++)
-        {
-            if(studentList.get(i).getId() == regNo)
-            {
-                return studentList.get(i);
+        for (Student aStudentList : studentList) {
+            if (aStudentList.getId() == regNo) {
+                return aStudentList;
             }
         }
+
+        System.out.println("No Student found to that ID");
         return  null;
     }
 
     // Cleans all the data from the student register
     public void reset()
     {
-        studentList = null;
+        studentList.clear();
+        //studentList = null;
     }
 
     // Finds all the students that has the given name as a part of their name.
-    public ArrayList<Student> findStudentsByName(String name)
+    public ArrayList<Student> findStudentsByName(String name) throws Exception
     {
         ArrayList<Student> students = new ArrayList<Student>();
-        for (int i = 0; i<studentList.size(); i++)
-        {
-            if(studentList.get(i).getFirstName().contains(name))
-            {
-                studentList.add(studentList.get(i));
+        for (Student aStudentList : studentList) {
+            if (aStudentList.getFirstName().contains(name)) {
+                students.add(aStudentList);
             }
-			
-			
-            if(studentList.get(i).getLastName().contains(name))
-            {
-                studentList.add(studentList.get(i));
+
+
+            if (aStudentList.getLastName().contains(name)) {
+                students.add(aStudentList);
             }
         }
+        if(students.isEmpty()) throw new Exception("No Students found with the given name");
         return students;
     }
 
@@ -77,5 +80,9 @@ public class StudentRegister
             regNumbers.add(student.getId());
         }
         return  regNumbers;
+    }
+
+    public boolean isempty(){
+        return studentList.isEmpty();
     }
 }

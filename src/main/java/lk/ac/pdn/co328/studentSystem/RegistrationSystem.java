@@ -1,11 +1,15 @@
+/*
+E/12/302
+ */
 package lk.ac.pdn.co328.studentSystem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem
 {
-    static Scanner stdin = new Scanner(System.in);;
-    static StudentRegister register = new StudentRegister();
+    private static Scanner stdin = new Scanner(System.in);
+    private static StudentRegister register = new StudentRegister();
     public static void main(String[] args)
     {
         System.out.println("Student management system command line version for CO328");
@@ -14,20 +18,26 @@ public class RegistrationSystem
             try
             {
                 printSelection();
-                int command = Integer.parseInt(stdin.nextLine());
+                //int command = Integer.parseInt(stdin.nextLine()); // no need to use parseInt when we can scan a int directly
+                int command = stdin.nextInt();
                 switch (command)
                 {
                     case 0:
                         return;
                     case 1:
                         addStudent();
-
                         break;
                     case 2:
                         removeStudent();
                         break;
                     case 3:
                         viewStudent();
+                        break;
+                    case 4:
+                        searchStudentByName();
+                        break;
+                    case 5:
+                        cleanStudentRegister();
                         break;
                     default:
                         System.out.println("Please select an available feature");
@@ -47,8 +57,8 @@ public class RegistrationSystem
         System.out.println("  1 - Add a student");
         System.out.println("  2 - Remove a student");
         System.out.println("  3 - Search a student by registration number");
-        System.out.println("  4 - Search students by name [Feature implementation ongoing]");
-        System.out.println("  5 - Clean student register [Feature implementation ongoing]");
+        System.out.println("  4 - Search students by name");
+        System.out.println("  5 - Clean student register");
         System.out.println("  6 - Get all the students [Feature implementation ongoing]");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
         System.out.println("  8 - Load from file/DB [Feature implementation ongoing]");
@@ -56,11 +66,12 @@ public class RegistrationSystem
 
     private static void addStudent()
     {
-        int regNo = 0;
+        int regNo;
         System.out.println("Enter reg number");
         try
         {
-            regNo = Integer.parseInt(stdin.nextLine());
+            //regNo = Integer.parseInt(stdin.nextLine()); Do not need this told you so
+            regNo = stdin.nextInt();
         }
         catch (Exception ex)
         {
@@ -86,11 +97,12 @@ public class RegistrationSystem
 
     private static void removeStudent()
     {
-        int regNo = 0;
+        int regNo;
         System.out.println("Enter reg number");
         try
         {
-            regNo = Integer.parseInt(stdin.nextLine());
+           //regNo = Integer.parseInt(stdin.nextLine()); // not going to tell again
+           regNo = stdin.nextInt();
         }
         catch (Exception ex)
         {
@@ -110,11 +122,12 @@ public class RegistrationSystem
 
     private static void viewStudent()
     {
-        int regNo = 0;
+        int regNo;
         System.out.println("Enter reg number");
         try
         {
-            regNo = Integer.parseInt(stdin.nextLine());
+            //regNo = Integer.parseInt(stdin.nextLine());
+            regNo = stdin.nextInt();
         }
         catch (Exception ex)
         {
@@ -135,12 +148,32 @@ public class RegistrationSystem
 
         if(student != null)
         {
-            System.out.println("First name : " + student.getFirstName());
-            System.out.println("Last name : " + student.getLastName());
+            System.out.print("First name : " + student.getFirstName() + "\nLast name : " + student.getLastName());
+            //System.out.println("Last name : " + student.getLastName()); can do this in a one soutprln
         }
         else
         {
             System.out.println("Student not found");
         }
+    }
+
+    private static void searchStudentByName()
+    {
+        System.out.println("Enter the name you want to search: ");
+        String name = stdin.nextLine();
+        try {
+            ArrayList<Student> students = register.findStudentsByName(name);
+            for (Student student: students){
+                System.out.println("ID: " + student.getId() + "First Name: " + student.getFirstName() + "Last Name" + student.getLastName());
+            }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    private  static void cleanStudentRegister()
+    {
+        register.reset();
     }
 }
