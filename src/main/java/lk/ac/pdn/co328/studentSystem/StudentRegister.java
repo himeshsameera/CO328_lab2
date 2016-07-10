@@ -45,9 +45,8 @@ public class StudentRegister
     }
 
     // Cleans all the data from the student register
-    public void reset()
-    {
-        studentList = null;
+    public void reset(){
+        studentList.removeAll(studentList);
     }
 
     // Finds all the students that has the given name as a part of their name.

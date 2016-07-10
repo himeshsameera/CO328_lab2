@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 public class StudentRegisterTest {
     @Test
+    public void reset() throws Exception {
+        register.reset();
+        ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
+
+        Assert.assertTrue("Reset done succesfully", numbers.size()== 0);
+    }
+
+    @Test
     public void findStudentsByName() throws Exception {
         ArrayList<Student> actual = null;
         ArrayList<Student> expected = new ArrayList<Student>();
