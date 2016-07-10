@@ -43,7 +43,7 @@ public class RegistrationSystem
             }
             catch(Exception ex)
             {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println(ex.getCause());
             }
         }
     }
@@ -56,7 +56,7 @@ public class RegistrationSystem
         System.out.println("  2 - Remove a student");
         System.out.println("  3 - Search a student by registration number");
         System.out.println("  4 - Search students by name ");
-        System.out.println("  5 - Clean student register [Feature implementation ongoing]");
+        System.out.println("  5 - Clean student register");
         System.out.println("  6 - Get all the students [Feature implementation ongoing]");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
         System.out.println("  8 - Load from file/DB [Feature implementation ongoing]");
@@ -187,7 +187,8 @@ public class RegistrationSystem
     }
 
     private static void reset() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        register.reset();
     }
     
     
