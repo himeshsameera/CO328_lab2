@@ -71,9 +71,7 @@ public class StudentRegister
             if(studentList.get(i).getFirstName().contains(name))
             {
                 students.add(studentList.get(i));
-            }
-			
-			
+            }else	
             if(studentList.get(i).getLastName().contains(name))
             {
             	students.add(studentList.get(i));

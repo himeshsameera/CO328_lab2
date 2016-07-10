@@ -171,8 +171,7 @@ public class RegistrationSystem
     		System.out.println("First name : " + student.getFirstName());
             System.out.println("Last name : " + student.getLastName()+"\n");   		
     		
-    	}
-    	   	
+    	}   	   	
     	
     }
     
