@@ -15,6 +15,7 @@ public class StudentRegisterTest {
         	register.addStudent(new Student(1, "nimal", "kumara"));
             register.addStudent(new Student(2, "ruwan", "tharaka"));
             register.addStudent(new Student(5, "gayan", "chamara"));
+            register.addStudent(new Student(6, "kumara", "nimal"));
         }catch(Exception ex){
         	Assert.fail("Adding student failed");
         }
@@ -90,6 +91,24 @@ public class StudentRegisterTest {
         expected.add(1);
         expected.add(2);
         expected.add(5);
+        expected.add(6);
         Assert.assertTrue(numbers.equals(expected));
     }
+    @Test
+    public void testFindStudentByName(){
+    	
+    	ArrayList<Student> students = register.findStudentsByName("nimal"); 
+    	Assert.assertNotNull("student was found",students.get(1));
+    	
+    }
+    @Test
+    public void testReset(){
+    	
+    	register.reset();
+    	ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
+    	
+    	Assert.assertTrue("Reset done successfully", numbers.size() == 0 );
+    }
+    
+    
 }
