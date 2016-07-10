@@ -1,11 +1,13 @@
 package lk.ac.pdn.co328.studentSystem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistrationSystem
 {
     static Scanner stdin = new Scanner(System.in);;
     static StudentRegister register = new StudentRegister();
+    static ArrayList<Student> temp = new ArrayList<Student>();
     public static void main(String[] args)
     {
         System.out.println("Student management system command line version for CO328");
@@ -29,6 +31,12 @@ public class RegistrationSystem
                     case 3:
                         viewStudent();
                         break;
+                    case 4:
+                    	searchByName();          	
+                    	break;
+                    case 5:
+                    	reset();
+                    	break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -143,4 +151,35 @@ public class RegistrationSystem
             System.out.println("Student not found");
         }
     }
+    private static void searchByName(){
+    	
+    	String name = null;
+    	
+    	try{
+    		name = stdin.nextLine();
+    	}catch(Exception ex){
+    		
+    		ex.printStackTrace();
+    		return ;
+    	}
+    	
+    	temp =  new ArrayList<Student>();
+    	
+    	temp = register.findStudentsByName(name);
+    	for(Student student: temp){
+    		System.out.println("Reg No: " + student.getId() );
+    		System.out.println("First name : " + student.getFirstName());
+            System.out.println("Last name : " + student.getLastName()+"\n");   		
+    		
+    	}   	   	
+    	
+    }
+    
+    private static void reset(){
+    	register.reset();
+    	System.out.println("Register resetting completed successfully.");
+    	
+    }
+    
+    
 }
