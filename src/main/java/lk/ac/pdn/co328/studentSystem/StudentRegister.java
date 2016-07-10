@@ -46,6 +46,7 @@ public class StudentRegister
     public void reset()
     {
         studentList = null;
+        studentList.clear();
     }
 
     // Finds all the students that has the given name as a part of their name.
@@ -74,10 +75,16 @@ public class StudentRegister
     public ArrayList<Integer> getAllRegistrationNumbers()
     {
         ArrayList<Integer> regNumbers = new ArrayList<Integer>();
+        
+        try{
         for (Student student: studentList)
         {
             regNumbers.add(student.getId());
         }
+        }catch(Exception e){}
+            
+            
+        
         return  regNumbers;
     }
 }
