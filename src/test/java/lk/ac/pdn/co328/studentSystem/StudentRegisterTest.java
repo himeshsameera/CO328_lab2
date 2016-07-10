@@ -9,6 +9,8 @@ public class StudentRegisterTest {
     public void setupTest()
     {
         System.out.println("A new test is starting.");
+        register = new StudentRegister();
+
     }
 
     @After
@@ -32,7 +34,6 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -52,13 +53,27 @@ public class StudentRegisterTest {
     public void testAddStudentTwice()
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+      // Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       
+        try
+        {
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+            register.addStudent(new Student(2, "nimal", "kumara"));
+            
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed due to twice entering same id");
+        }
+               System.out.println("Testing Adding a student with same registration number");
+               Student student = register.findStudent(1);
+       Assert.assertEquals("Student Id is already inserted",1,student.getId());
+        
    }
 
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -77,7 +92,6 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));

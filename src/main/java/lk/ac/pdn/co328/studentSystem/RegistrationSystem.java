@@ -1,5 +1,7 @@
 package lk.ac.pdn.co328.studentSystem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RegistrationSystem
@@ -29,13 +31,19 @@ public class RegistrationSystem
                     case 3:
                         viewStudent();
                         break;
+                    case 4:
+                        viewStudentbyName();
+                        break;    
+                    case 5:
+                        reset();
+                        break;    
                     default:
                         System.out.println("Please select an available feature");
                 }
             }
             catch(Exception ex)
             {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println(ex.getCause());
             }
         }
     }
@@ -47,8 +55,8 @@ public class RegistrationSystem
         System.out.println("  1 - Add a student");
         System.out.println("  2 - Remove a student");
         System.out.println("  3 - Search a student by registration number");
-        System.out.println("  4 - Search students by name [Feature implementation ongoing]");
-        System.out.println("  5 - Clean student register [Feature implementation ongoing]");
+        System.out.println("  4 - Search students by name ");
+        System.out.println("  5 - Clean student register");
         System.out.println("  6 - Get all the students [Feature implementation ongoing]");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
         System.out.println("  8 - Load from file/DB [Feature implementation ongoing]");
@@ -143,4 +151,45 @@ public class RegistrationSystem
             System.out.println("Student not found");
         }
     }
+
+    private static void viewStudentbyName() {
+    
+         String sname;
+
+        System.out.println("Enter Student Name");
+        try
+        {
+            sname = stdin.nextLine();
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Invalid inputs.");
+            return;
+        }
+
+        ArrayList<Student> students;
+        try
+        {
+             students = register.findStudentsByName(sname);
+             
+             for(int i = 0;i<students.size();i++){
+                 
+                 System.out.println("Student name is "+students.get(i).getFirstName()+" "+students.get(i).getLastName()+" and id is "+students.get(i).getId());
+             }
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Error in searching student : " + ex.getMessage());
+            return;
+        }
+
+       
+    }
+
+    private static void reset() {
+        
+        register.reset();
+    }
+    
+    
 }
