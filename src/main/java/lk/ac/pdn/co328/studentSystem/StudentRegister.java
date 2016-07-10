@@ -46,6 +46,7 @@ public class StudentRegister
     public void reset()
     {
         studentList = null;
+        ArrayList<Student> studentList = new ArrayList<Student>();
     }
 
     // Finds all the students that has the given name as a part of their name.
@@ -56,13 +57,15 @@ public class StudentRegister
         {
             if(studentList.get(i).getFirstName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                //studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
 			
 			
             if(studentList.get(i).getLastName().contains(name))
             {
-                studentList.add(studentList.get(i));
+               // studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
         }
         return students;
@@ -77,5 +80,10 @@ public class StudentRegister
             regNumbers.add(student.getId());
         }
         return  regNumbers;
+    }
+
+
+    public int getSize(){
+        return this.studentList.size();
     }
 }
