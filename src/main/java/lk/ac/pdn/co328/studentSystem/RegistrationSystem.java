@@ -2,13 +2,6 @@ package lk.ac.pdn.co328.studentSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-/* TODO
- * Adding duplicate elements to same reg number is happenning
- * need to fix that bug
- * perfomance is reduced
- * need to check before give the chance to enter the name
- * CHECK
- */
 public class RegistrationSystem
 {
     static Scanner stdin = new Scanner(System.in);;
@@ -74,30 +67,36 @@ public class RegistrationSystem
     private static void addStudent()
     {
         int regNo = 0;
+        Student student = null;
+        String firstName = null,lastName = null;
         System.out.println("Enter reg number");
-        try
-        {
-            regNo = Integer.parseInt(stdin.nextLine());
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Invalid inputs.");
-            return;
-        }
-
-        System.out.println("Enter first name");
-        String firstName = stdin.nextLine();
-        System.out.println("Enter last name");
-        String lastName = stdin.nextLine();
-
-        Student student = new Student(regNo,firstName,lastName);
-        try
-        {
-            register.addStudent(student);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Error in adding student : " + ex.getMessage());
+        while(student==null){
+            try {
+                regNo = Integer.parseInt(stdin.nextLine());
+                student = register.findStudent(regNo);
+                if (student == null) {
+                    System.out.println("Enter first name");
+                    firstName = stdin.nextLine();
+                    System.out.println("Enter last name");
+                    lastName = stdin.nextLine();
+                    student = new Student(regNo,firstName,lastName);
+                    try
+                    {
+                        register.addStudent(student);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.out.println("Error in adding student : " + ex.getMessage());
+                    }
+                }
+                else{
+                    System.out.println("Reg no is already taken please try again");
+                    student = null;
+                }
+            } catch (Exception ex) {
+                System.out.println("Invalid inputs.");
+                return;
+            }
         }
     }
 
