@@ -45,27 +45,9 @@ public class StudentRegister
     // Cleans all the data from the student register
     public void reset()
     {
-        studentList = null;
-    }
-
-    // Finds all the students that has the given name as a part of their name.
-    public ArrayList<Student> findStudentsByName(String name)
-    {
-        ArrayList<Student> students = new ArrayList<Student>();
-        for (int i = 0; i<studentList.size(); i++)
-        {
-            if(studentList.get(i).getFirstName().contains(name))
-            {
-                studentList.add(studentList.get(i));
-            }
-			
-			
-            if(studentList.get(i).getLastName().contains(name))
-            {
-                studentList.add(studentList.get(i));
-            }
-        }
-        return students;
+        studentList.removeAll(studentList);
+        
+        
     }
 
     //Gives all the registration numbers of the students.
@@ -78,4 +60,26 @@ public class StudentRegister
         }
         return  regNumbers;
     }
+    
+
+    // Finds all the students that has the given name as a part of their name.
+    public ArrayList<Student> findStudentsByName(String name)
+    {
+        ArrayList<Student> students = new ArrayList<Student>();
+        for (int i = 0; i<studentList.size(); i++)
+        {
+            if(studentList.get(i).getFirstName().contains(name))
+            {
+                students.add(studentList.get(i));
+            }else	
+            if(studentList.get(i).getLastName().contains(name))
+            {
+            	students.add(studentList.get(i));
+            }
+        }
+        return students;
+    }
+   
+    
+    
 }
