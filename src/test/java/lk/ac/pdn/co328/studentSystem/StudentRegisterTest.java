@@ -12,6 +12,18 @@ public class StudentRegisterTest {
     public void setupTest() {
         register = new StudentRegister();
         System.out.println("A new test is starting.");
+
+        try
+        {
+            register.addStudent(new Student(1, "Amila", "Indrajith"));
+            register.addStudent(new Student(2, "nimal", "kumara"));
+            register.addStudent(new Student(5, "fawzan", "mohomad"));
+
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed");
+        }
     }
 
     @After
@@ -36,15 +48,7 @@ public class StudentRegisterTest {
     public void testAddStudent()
    {
        //register = new StudentRegister();
-       try
-       {
-           register.addStudent(new Student(2, "nimal", "kumara"));
-           register.addStudent(new Student(5, "fawzan", "mohomad"));
-       }
-       catch (Exception ex)
-       {
-           Assert.fail("Adding student failed");
-       }
+
        System.out.println("Testing add student method");
 
        Student student = register.findStudent(2);
@@ -79,16 +83,7 @@ public class StudentRegisterTest {
     public void testRemoveStudent()
     {
         //register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
-        }
-        catch (Exception ex)
-        {
-            Assert.fail("Add student failed");
-        }
+
         register.removeStudent(1);
         Student student = register.findStudent(1);
         Assert.assertNull("student was not removed",student);
@@ -98,21 +93,14 @@ public class StudentRegisterTest {
     public void testGetRegNumbers()
     {
         //register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
-        }
-        catch (Exception ex)
-        {
-            Assert.fail("Adding student failed");
-        }
+
         ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
         ArrayList<Integer> expected = new ArrayList<Integer>();
+
         expected.add(1);
         expected.add(2);
         expected.add(5);
+
         Assert.assertTrue(numbers.equals(expected));
     }
 }
