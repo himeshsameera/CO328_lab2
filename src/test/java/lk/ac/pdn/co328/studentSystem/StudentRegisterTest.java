@@ -6,7 +6,10 @@ public class StudentRegisterTest {
     StudentRegister register;
 
     @Before
-    public void setupTest() { System.out.println("A new test is starting.");}
+    public void setupTest() {
+        register = new StudentRegister();
+        System.out.println("A new test is starting.");
+    }
 
     @After
     public void finishTest()
@@ -29,7 +32,6 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -50,7 +52,6 @@ public class StudentRegisterTest {
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
        //Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
-       register = new StudentRegister();
        String expected = "StudentID already exists in the register";
        String actual = "Not initialized a message yet!";
        try{
@@ -68,7 +69,6 @@ public class StudentRegisterTest {
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -87,7 +87,6 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
