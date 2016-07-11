@@ -52,7 +52,7 @@ public class StudentRegisterTest {
        //Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
        register = new StudentRegister();
        String expected = "StudentID already exists in the register";
-       String actual = "Not initialized a message yet";
+       String actual = "Not initialized a message yet!";
        try{
            register.addStudent(new Student(5, "fawzan", "mohomad"));
            register.addStudent(new Student(5, "dhanuka", "dilsan"));
