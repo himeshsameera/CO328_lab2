@@ -115,5 +115,18 @@ public class StudentRegisterTest {
         Assert.assertNotNull("Student is in",students);
     }
 
+    @Test
+    public void testCleanRegister()
+    {
+        register.reset();
 
+        System.out.println("Testing clean register method");
+        ArrayList<Integer> index_num;
+        try {
+            index_num = register.getAllRegistrationNumbers();
+            Assert.assertNotNull("register is not cleared",index_num);
+        }catch (NullPointerException ex){
+            System.out.println("Register is cleared");
+        }
+    }
 }
