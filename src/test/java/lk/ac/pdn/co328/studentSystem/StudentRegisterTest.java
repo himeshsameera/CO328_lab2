@@ -58,8 +58,8 @@ public class StudentRegisterTest {
            register.addStudent(new Student(5, "fawzan", "mohomad"));
            register.addStudent(new Student(5, "dhanuka", "dilsan"));
        }
-       catch (Exception e){
-           actual = e.getMessage();
+       catch (Exception ex){
+           actual = ex.getMessage();
        }
        System.out.println("Testing add student twice method");
 
@@ -79,6 +79,7 @@ public class StudentRegisterTest {
         {
             Assert.fail("Add student failed");
         }
+        System.out.println("Testing remove student method");
         register.removeStudent(1);
         Student student = register.findStudent(1);
         Assert.assertNull("student was not removed",student);
@@ -97,6 +98,7 @@ public class StudentRegisterTest {
         {
             Assert.fail("Adding student failed");
         }
+        System.out.println("Testing get register number method");
         ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
         ArrayList<Integer> expected = new ArrayList<Integer>();
         expected.add(1);
@@ -104,4 +106,14 @@ public class StudentRegisterTest {
         expected.add(5);
         Assert.assertTrue(numbers.equals(expected));
     }
+
+    @Test
+    public void testFindByName()
+    {
+        System.out.println("Testing find by name method");
+        ArrayList<Student> students = register.findStudentsByName("nimal");
+        Assert.assertNotNull("Student is in",students);
+    }
+
+
 }
