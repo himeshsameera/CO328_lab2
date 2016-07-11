@@ -69,8 +69,9 @@ public class StudentRegisterTest {
        try{
     	   register.addStudent(new Student(10, "deshan", "kumara"));
            register.addStudent(new Student(10, "rashmi", "mohomad"));
+           Assert.fail("Adding student with a same re no twice.");
        }catch (Exception ex){
-    	   Assert.fail("Adding student with a same re no twice.");
+    	   
     	   
        }
    }
