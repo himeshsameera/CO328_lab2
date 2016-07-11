@@ -5,9 +5,12 @@ import java.util.ArrayList;
 public class StudentRegisterTest {
     StudentRegister register;
 
+
+
+
     @Before
-    public void setupTest()
-    {
+    public void setupTest() {
+        register = new StudentRegister();
         System.out.println("A new test is starting.");
     }
 
@@ -32,7 +35,7 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
+       //register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -55,7 +58,7 @@ public class StudentRegisterTest {
 
        //Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
 
-       register = new StudentRegister();
+       //register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -75,7 +78,7 @@ public class StudentRegisterTest {
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
+        //register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -94,7 +97,7 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
+        //register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
