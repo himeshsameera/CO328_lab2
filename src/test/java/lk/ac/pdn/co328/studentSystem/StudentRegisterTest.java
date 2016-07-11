@@ -51,10 +51,10 @@ public class StudentRegisterTest {
     @Test
     public void findStudentsByName(){
 
-                /*ArrayList<Student> student = register.findStudentsByName("nimal");
+                ArrayList<Student> student = register.findStudentsByName("nimal");
                 Assert.assertEquals(2, student.get(0).getId());
                 Assert.assertEquals("nimal", student.get(0).getFirstName());
-                Assert.assertEquals("kumara", student.get(0).getLastName());*/
+                Assert.assertEquals("kumara", student.get(0).getLastName());
     }
 
     @Test
@@ -78,7 +78,6 @@ public class StudentRegisterTest {
        //register = new StudentRegister();
        try
        {
-           register.addStudent(new Student(2, "nimal", "kumara"));
            register.addStudent(new Student(2, "nimal", "kumara"));
        }
        catch (Exception ex)
