@@ -3,11 +3,8 @@ import org.junit.*;
 import java.util.ArrayList;
 
 public class StudentRegisterTest {
+
     StudentRegister register;
-
-
-
-
     @Before
     public void setupTest() {
         register = new StudentRegister();
@@ -44,7 +41,16 @@ public class StudentRegisterTest {
         System.out.println("All tests are done");
     }
 
-   @Test
+    @Test
+    public void findStudentsByName(){
+
+                ArrayList<Student> student = register.findStudentsByName("nimal");
+                Assert.assertEquals(2, student.get(0).getId());
+                Assert.assertEquals("nimal", student.get(0).getFirstName());
+                Assert.assertEquals("kumara", student.get(0).getLastName());
+    }
+
+    @Test
     public void testAddStudent()
    {
        //register = new StudentRegister();
@@ -103,4 +109,6 @@ public class StudentRegisterTest {
 
         Assert.assertTrue(numbers.equals(expected));
     }
+
+
 }
