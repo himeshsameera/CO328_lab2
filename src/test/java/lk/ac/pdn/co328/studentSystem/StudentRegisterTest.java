@@ -2,6 +2,9 @@ package lk.ac.pdn.co328.studentSystem;
 import org.junit.*;
 import java.util.ArrayList;
 
+import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.After;
+import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
+
 public class StudentRegisterTest {
     StudentRegister register;
 
@@ -52,7 +55,16 @@ public class StudentRegisterTest {
     public void testAddStudentTwice()
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+	   register = new StudentRegister();
+        try
+        {
+            register.addStudent(new Student(1, "Kamal", "Siripala"));
+            register.addStudent(new Student(1, "Nimala", "Siripala"));
+        }
+        catch (Exception ex)
+        {
+			Assert.AssertEquals(ex,1,student.getId());
+        }
    }
 
     @Test
