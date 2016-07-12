@@ -41,6 +41,9 @@ public class StudentRegisterTest {
         System.out.println("All tests are done");
     }
 
+
+
+
     @Test
     public void reset(){
         register.reset();
@@ -104,5 +107,23 @@ public class StudentRegisterTest {
         //expected.add(5);
         //System.out.println(numbers);
         Assert.assertTrue(numbers.equals(expected));
+    }
+
+    @Test
+    public void findStudentsByName() throws Exception {
+        try
+        {
+            register.addStudent(new Student(2, "nimal", "kumara"));
+
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Add student failed");
+        }
+
+        ArrayList<Student> students = register.findStudentsByName("nimal");
+        Assert.assertEquals(2, students.get(0).getId());
+        Assert.assertEquals("nimal", students.get(0).getFirstName());
+        Assert.assertEquals("kumara", students.get(0).getLastName());
     }
 }
