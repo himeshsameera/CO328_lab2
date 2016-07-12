@@ -48,11 +48,22 @@ public class StudentRegisterTest {
        Assert.assertEquals("Student Id is wrong",2,student.getId());
    }
 
-   @Test
-    public void testAddStudentTwice()
+   @Test(expected=Exception.class)
+   public void testAddStudentTwice()
    {
-       // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       register = new StudentRegister();
+       try
+       {
+           register.addStudent(new Student(2, "nimal", "kumara"));
+       }
+       catch (Exception ex)
+       {
+           Assert.fail("Student ID already exists in the system");
+       }
+       System.out.println("Testing add student method - exception");
+
+       Student student = register.findStudent(3);
+       Assert.assertEquals("Illegal add of same student twice",2,student.getId());
    }
 
     @Test
