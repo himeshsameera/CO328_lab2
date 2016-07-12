@@ -114,6 +114,7 @@ public class RegistrationSystem
         System.out.println("Enter reg number");
         try
         {
+
             regNo = Integer.parseInt(stdin.nextLine());
         }
         catch (Exception ex)
