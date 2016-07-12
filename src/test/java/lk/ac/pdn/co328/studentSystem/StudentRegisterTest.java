@@ -8,13 +8,14 @@ public class StudentRegisterTest {
     @Before
     public void setupTest()
     {
-        System.out.println("A new test is starting.");
+        register = new StudentRegister();
+        //System.out.println("A new test is starting.");
     }
 
     @After
     public void finishTest()
     {
-        System.out.println("Test finished");
+        //System.out.println("Test finished");
     }
 
     @BeforeClass
@@ -32,7 +33,7 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
+
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -52,13 +53,22 @@ public class StudentRegisterTest {
     public void testAddStudentTwice()
    {
        // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       // Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       try
+       {
+           register.addStudent(new Student(2, "nimal", "kumara"));
+       }
+       catch (Exception ex)
+       {
+           //Assert.fail("Adding student failed");
+           System.out.println("Success");
+       }
    }
 
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
+        //register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -77,7 +87,7 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
+        //register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
