@@ -112,7 +112,6 @@ public class StudentRegisterTest {
 
   }
 
-
   @Test
   public void testReset(){
     register.reset();
