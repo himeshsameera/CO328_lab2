@@ -59,7 +59,7 @@ public class StudentRegisterTest {
         register = new StudentRegister();
        try {
            register.addStudent(new Student(1, "ruwan", "tharaka"));
-         //  register.addStudent(new Student(1, "ruwan", "tharaka"));
+           register.addStudent(new Student(1, "ruwan", "tharaka"));
            Assert.fail("You would get an exception!\n");
        } catch (Exception ex) {
           System.out.println("Add student twice is not success!\n");
