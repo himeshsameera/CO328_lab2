@@ -9,6 +9,15 @@ public class StudentRegisterTest {
     public void setupTest()
     {
         register = new StudentRegister();
+        try
+        {
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Add student failed");
+        }
         //System.out.println("A new test is starting.");
     }
 
@@ -69,16 +78,7 @@ public class StudentRegisterTest {
     public void testRemoveStudent()
     {
         //register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
-        }
-        catch (Exception ex)
-        {
-            Assert.fail("Add student failed");
-        }
+
         register.removeStudent(1);
         Student student = register.findStudent(1);
         Assert.assertNull("student was not removed",student);
@@ -88,21 +88,13 @@ public class StudentRegisterTest {
     public void testGetRegNumbers()
     {
         //register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
-        }
-        catch (Exception ex)
-        {
-            Assert.fail("Adding student failed");
-        }
+
         ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
         ArrayList<Integer> expected = new ArrayList<Integer>();
         expected.add(1);
-        expected.add(2);
-        expected.add(5);
+        //expected.add(2);
+        //expected.add(5);
+        //System.out.println(numbers);
         Assert.assertTrue(numbers.equals(expected));
     }
 }
