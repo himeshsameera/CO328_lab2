@@ -45,6 +45,7 @@ public class StudentRegister
     // Cleans all the data from the student register
     public void reset()
     {
+        studentList.clear();
         studentList = null;
     }
 

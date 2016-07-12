@@ -3,6 +3,8 @@ import org.junit.*;
 import java.util.ArrayList;
 
 public class StudentRegisterTest {
+
+
     StudentRegister register;
 
     @Before
@@ -37,6 +39,12 @@ public class StudentRegisterTest {
     public static void afterClass()
     {
         System.out.println("All tests are done");
+    }
+
+    @Test
+    public void reset(){
+        register.reset();
+        Assert.assertNotNull("Failed",register);
     }
 
    @Test
