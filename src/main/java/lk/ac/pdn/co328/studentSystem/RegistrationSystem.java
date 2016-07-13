@@ -32,6 +32,9 @@ public class RegistrationSystem
                     case 4:
                         findStudentsByName();
                         break;
+                    case 5:
+                        cleanStudentRegister();
+                        break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -51,7 +54,7 @@ public class RegistrationSystem
         System.out.println("  2 - Remove a student");
         System.out.println("  3 - Search a student by registration number");
         System.out.println("  4 - Search students by name");
-        System.out.println("  5 - Clean student register [Feature implementation ongoing]");
+        System.out.println("  5 - Clean student register");
         System.out.println("  6 - Get all the students [Feature implementation ongoing]");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
         System.out.println("  8 - Load from file/DB [Feature implementation ongoing]");
@@ -166,6 +169,18 @@ public class RegistrationSystem
         for (Student student: students)
         {
             System.out.println("Student ID : " + student.getId());
+        }
+    }
+
+    private static void cleanStudentRegister() {
+
+        try {
+            register.reset();
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Error in removing data from the register: " + ex.getMessage());
+            return;
         }
     }
 }
