@@ -131,4 +131,25 @@ public class StudentRegisterTest {
         expected.add(2);
         Assert.assertTrue(regNo.equals(expected));
     }
+
+    @Test
+    public void testReset(){
+        try{
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+            register.addStudent(new Student(2, "nimal", "ruwan"));
+            register.addStudent(new Student(5, "nimmi", "chamini"));
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed");
+        }
+        register.reset();
+        Student student1 = register.findStudent(1);
+        Assert.assertNull("Register wasn't cleaned",student1);
+        Student student2 = register.findStudent(2);
+        Assert.assertNull("Register wasn't cleaned",student2);
+        Student student3 = register.findStudent(5);
+        Assert.assertNull("Register wasn't cleaned",student3);
+
+    }
 }
