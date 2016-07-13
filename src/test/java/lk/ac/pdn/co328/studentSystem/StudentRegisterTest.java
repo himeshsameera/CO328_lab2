@@ -136,7 +136,7 @@ public class StudentRegisterTest {
         Assert.assertTrue(got.get(1).getLastName().equals("ruwan"));
     }
     @Test
-    public void testCleanRegestor() {
+    public void testCleanStudentRegestor() {
         register = new StudentRegister();
         try {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
