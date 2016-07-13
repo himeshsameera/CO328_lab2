@@ -9,6 +9,7 @@ public class StudentRegisterTest {
     public void setupTest()
     {
         System.out.println("A new test is starting.");
+        register = new StudentRegister();
     }
 
     @After
@@ -32,7 +33,6 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -51,7 +51,6 @@ public class StudentRegisterTest {
    @Test(expected=Exception.class)
    public void testAddStudentTwice()
    {
-       register = new StudentRegister();
        try
        {
            register.addStudent(new Student(2, "nimal", "kumara"));
@@ -60,7 +59,7 @@ public class StudentRegisterTest {
        {
            Assert.fail("Student ID already exists in the system");
        }
-       System.out.println("Testing add student method - exception");
+       System.out.println("Testing add student method to throw an exception");
 
        Student student = register.findStudent(3);
        Assert.assertEquals("Illegal add of same student twice",2,student.getId());
@@ -69,7 +68,6 @@ public class StudentRegisterTest {
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(2, "nimal", "kumara"));
@@ -88,7 +86,6 @@ public class StudentRegisterTest {
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
         try
         {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
@@ -105,5 +102,33 @@ public class StudentRegisterTest {
         expected.add(2);
         expected.add(5);
         Assert.assertTrue(numbers.equals(expected));
+    }
+
+    //check with name in first_name , name in last_name and not in any
+    @Test
+    public void testFindStudentsByName()
+    {
+        int i = 0;
+        try
+        {
+            register.addStudent(new Student(1, "ruwan", "tharaka"));
+            register.addStudent(new Student(2, "nimal", "ruwan"));
+            register.addStudent(new Student(5, "nimmi", "chamini"));
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed");
+        }
+        ArrayList<Student> students = register.findStudentsByName("ruwan");
+        ArrayList<Integer> expected = new ArrayList<Integer>();
+        ArrayList<Integer> regNo = new ArrayList<Integer>();
+        for (Student student: students)
+        {
+            regNo.add(i, student.getId());
+            i++;
+        }
+        expected.add(1);
+        expected.add(2);
+        Assert.assertTrue(regNo.equals(expected));
     }
 }
