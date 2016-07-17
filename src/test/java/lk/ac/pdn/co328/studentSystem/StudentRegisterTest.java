@@ -1,5 +1,7 @@
 package lk.ac.pdn.co328.studentSystem;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
+
 import java.util.ArrayList;
 
 public class StudentRegisterTest {
@@ -51,8 +53,24 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudentTwice()
    {
-       // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       register = new StudentRegister();
+       try
+       {
+           register.addStudent(new Student(2, "nimal", "kumara"));
+           register.addStudent(new Student(5, "fawzan", "mohomad"));
+       }
+       catch (Exception ex)
+       {
+           Assert.fail("Adding student failed");
+       }
+       System.out.println("Testing addStudent method by adding the same student twice");
+
+       try {
+           register.addStudent(new Student(5, "fawzan", "mohomad"));
+           Assert.fail("Adding a student twice did't throw an exception");
+       } catch (Exception e) {
+
+       }
    }
 
     @Test
