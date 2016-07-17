@@ -11,12 +11,23 @@ public class StudentRegisterTest {
     public void setupTest()
     {
         System.out.println("A new test is starting.");
+
+        register = new StudentRegister();
+        try
+        {
+            register.addStudent(new Student(2, "nimal", "kumara"));
+            register.addStudent(new Student(5, "fawzan", "mohomad"));
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed");
+        }
     }
 
     @After
     public void finishTest()
     {
-        System.out.println("Test finished");
+        System.out.println("Test finished\n");
     }
 
     @BeforeClass
@@ -34,16 +45,6 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
-       try
-       {
-           register.addStudent(new Student(2, "nimal", "kumara"));
-           register.addStudent(new Student(5, "fawzan", "mohomad"));
-       }
-       catch (Exception ex)
-       {
-           Assert.fail("Adding student failed");
-       }
        System.out.println("Testing add student method");
 
        Student student = register.findStudent(2);
@@ -53,16 +54,6 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudentTwice()
    {
-       register = new StudentRegister();
-       try
-       {
-           register.addStudent(new Student(2, "nimal", "kumara"));
-           register.addStudent(new Student(5, "fawzan", "mohomad"));
-       }
-       catch (Exception ex)
-       {
-           Assert.fail("Adding student failed");
-       }
        System.out.println("Testing addStudent method by adding the same student twice");
 
        try {
@@ -76,41 +67,29 @@ public class StudentRegisterTest {
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
-        }
-        catch (Exception ex)
-        {
-            Assert.fail("Add student failed");
-        }
-        register.removeStudent(1);
-        Student student = register.findStudent(1);
+        System.out.println("Testing removeStudent method");
+
+        register.removeStudent(2);
+        Student student = register.findStudent(2);
         Assert.assertNull("student was not removed",student);
     }
 
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
+        try {
+            register.addStudent(new Student(7, "gayan", "chamara"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception ex)
-        {
-            Assert.fail("Adding student failed");
-        }
+
+        System.out.println("Testing getRegNumbers method");
+
         ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
         ArrayList<Integer> expected = new ArrayList<Integer>();
-        expected.add(1);
         expected.add(2);
         expected.add(5);
+        expected.add(7);
         Assert.assertTrue(numbers.equals(expected));
     }
 }
