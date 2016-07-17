@@ -1,5 +1,7 @@
 package lk.ac.pdn.co328.studentSystem;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
+
 import java.util.ArrayList;
 
 public class StudentRegisterTest {
@@ -9,12 +11,23 @@ public class StudentRegisterTest {
     public void setupTest()
     {
         System.out.println("A new test is starting.");
+
+        register = new StudentRegister();
+        try
+        {
+            register.addStudent(new Student(2, "nimal", "kumara"));
+            register.addStudent(new Student(5, "fawzan", "mohomad"));
+        }
+        catch (Exception ex)
+        {
+            Assert.fail("Adding student failed");
+        }
     }
 
     @After
     public void finishTest()
     {
-        System.out.println("Test finished");
+        System.out.println("Test finished\n");
     }
 
     @BeforeClass
@@ -32,16 +45,6 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudent()
    {
-       register = new StudentRegister();
-       try
-       {
-           register.addStudent(new Student(2, "nimal", "kumara"));
-           register.addStudent(new Student(5, "fawzan", "mohomad"));
-       }
-       catch (Exception ex)
-       {
-           Assert.fail("Adding student failed");
-       }
        System.out.println("Testing add student method");
 
        Student student = register.findStudent(2);
@@ -51,48 +54,81 @@ public class StudentRegisterTest {
    @Test
     public void testAddStudentTwice()
    {
-       // Implement your test code here. Adding a student with same registration number twice should generate an exception.
-       Assert.fail("Test case is not yet implemented for adding student twice. So it is set to fail always");
+       System.out.println("Testing addStudent method by adding the same student twice");
+
+       try {
+           register.addStudent(new Student(5, "fawzan", "mohomad"));
+           Assert.fail("Adding a student twice did't throw an exception");
+       } catch (Exception e) {
+
+       }
    }
 
     @Test
     public void testRemoveStudent()
     {
-        register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
-        }
-        catch (Exception ex)
-        {
-            Assert.fail("Add student failed");
-        }
-        register.removeStudent(1);
-        Student student = register.findStudent(1);
+        System.out.println("Testing removeStudent method");
+
+        register.removeStudent(2);
+        Student student = register.findStudent(2);
         Assert.assertNull("student was not removed",student);
     }
 
     @Test
     public void testGetRegNumbers()
     {
-        register = new StudentRegister();
-        try
-        {
-            register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(2, "nimal", "kumara"));
-            register.addStudent(new Student(5, "gayan", "chamara"));
+        try {
+            register.addStudent(new Student(7, "gayan", "chamara"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception ex)
-        {
-            Assert.fail("Adding student failed");
-        }
+
+        System.out.println("Testing getRegNumbers method");
+
         ArrayList<Integer> numbers = register.getAllRegistrationNumbers();
         ArrayList<Integer> expected = new ArrayList<Integer>();
-        expected.add(1);
         expected.add(2);
         expected.add(5);
+        expected.add(7);
         Assert.assertTrue(numbers.equals(expected));
+    }
+
+    // Test findStudentByName method with a part of the firstname as input
+    @Test
+    public void testFindStudentsByNameFirstName() throws Exception {
+        System.out.println("Testing findStudentByName method with a part of the firstname");
+
+        ArrayList<Student> students = register.findStudentsByName("ima");
+        ArrayList<Student> expected = new ArrayList<Student>();
+        expected.add(new Student(2, "nimal", "kumara"));
+        Assert.assertTrue(students.size() == expected.size() && students.get(0).getFirstName().equals(expected.get(0).getFirstName()));
+    }
+
+    // Test findStudentByName method with a part of the lastname as input
+    @Test
+    public void testFindStudentsByNameLastName() throws Exception {
+        System.out.println("Testing findStudentByName method with a part of the lastname");
+
+        ArrayList<Student> students = register.findStudentsByName("umar");
+        ArrayList<Student> expected = new ArrayList<Student>();
+        expected.add(new Student(2, "nimal", "kumara"));
+        Assert.assertTrue(students.size() == expected.size() && students.get(0).getFirstName().equals(expected.get(0).getFirstName()));
+    }
+
+    // Test findStudentByName method with a non-matching input
+    @Test
+    public void testFindStudentsByNameNoEntry() throws Exception {
+        System.out.println("Testing findStudentByName method with a non matching string");
+
+        ArrayList<Student> students = register.findStudentsByName("zzz");
+        Assert.assertTrue(students.isEmpty());
+    }
+
+    @Test
+    public void testReset() throws Exception {
+        System.out.println("Testing reset method");
+
+        register.reset();
+        Assert.assertNull(register.getStudentList());
     }
 }

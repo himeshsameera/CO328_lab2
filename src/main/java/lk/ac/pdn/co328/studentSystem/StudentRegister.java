@@ -5,6 +5,8 @@ public class StudentRegister
 {
     private ArrayList<Student> studentList = new ArrayList<Student>();
 
+    public ArrayList<Student> getStudentList() { return studentList; }
+
     // Adds a new student to the system
     public void addStudent(Student st) throws Exception {
         for (Student student:studentList)
@@ -52,17 +54,20 @@ public class StudentRegister
     public ArrayList<Student> findStudentsByName(String name)
     {
         ArrayList<Student> students = new ArrayList<Student>();
-        for (int i = 0; i<studentList.size(); i++)
-        {
-            if(studentList.get(i).getFirstName().contains(name))
+        if(studentList != null) {
+            for (int i = 0; i<studentList.size(); i++)
             {
-                studentList.add(studentList.get(i));
-            }
-			
-			
-            if(studentList.get(i).getLastName().contains(name))
-            {
-                studentList.add(studentList.get(i));
+                if(studentList.get(i).getFirstName().contains(name))
+                {
+                    students.add(studentList.get(i));
+
+                }
+
+
+                if(studentList.get(i).getLastName().contains(name))
+                {
+                    students.add(studentList.get(i));
+                }
             }
         }
         return students;
@@ -77,5 +82,19 @@ public class StudentRegister
             regNumbers.add(student.getId());
         }
         return  regNumbers;
+    }
+
+    // Prints details of all students
+    public void printAll() {
+        if(studentList.isEmpty() || studentList == null) {
+            System.out.println("No records found.");
+        } else {
+            int size = studentList.size();
+            System.out.println(size + " record(s) found.");
+            for (int i = 0; i < size; i++) {
+                Student student = studentList.get(i);
+                System.out.println("id: " + student.getId() + " firstname: " + student.getFirstName() + " lastname: " + student.getLastName());
+            }
+        }
     }
 }
