@@ -1,3 +1,4 @@
+// implemented get all the students feature
 package lk.ac.pdn.co328.studentSystem;
 
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class RegistrationSystem
                     case 5:
                         cleanStudentRegister();
                         break;
+                    case 6:
+                        getAllStudents();
+                        break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -56,7 +60,7 @@ public class RegistrationSystem
         System.out.println("  3 - Search a student by registration number");
         System.out.println("  4 - Search students by name");
         System.out.println("  5 - Clean student register");
-        System.out.println("  6 - Get all the students [Feature implementation ongoing]");
+        System.out.println("  6 - Get all the students");
         System.out.println("  7 - Save to file/DB [Feature implementation ongoing]");
         System.out.println("  8 - Load from file/DB [Feature implementation ongoing]");
     }
@@ -172,5 +176,9 @@ public class RegistrationSystem
     private static void cleanStudentRegister() {
         register.reset();
         System.out.println("Register cleaned.");
+    }
+
+    private static void getAllStudents() {
+        register.printAll();
     }
 }

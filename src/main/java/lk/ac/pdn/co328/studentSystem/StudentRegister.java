@@ -83,4 +83,18 @@ public class StudentRegister
         }
         return  regNumbers;
     }
+
+    // Prints details of all students
+    public void printAll() {
+        if(studentList.isEmpty() || studentList == null) {
+            System.out.println("No records found.");
+        } else {
+            int size = studentList.size();
+            System.out.println(size + " record(s) found.");
+            for (int i = 0; i < size; i++) {
+                Student student = studentList.get(i);
+                System.out.println("id: " + student.getId() + " firstname: " + student.getFirstName() + " lastname: " + student.getLastName());
+            }
+        }
+    }
 }
