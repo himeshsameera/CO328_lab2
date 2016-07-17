@@ -5,6 +5,8 @@ public class StudentRegister
 {
     private ArrayList<Student> studentList = new ArrayList<Student>();
 
+    public ArrayList<Student> getStudentList() { return studentList; }
+
     // Adds a new student to the system
     public void addStudent(Student st) throws Exception {
         for (Student student:studentList)
@@ -52,17 +54,20 @@ public class StudentRegister
     public ArrayList<Student> findStudentsByName(String name)
     {
         ArrayList<Student> students = new ArrayList<Student>();
-        for (int i = 0; i<studentList.size(); i++)
-        {
-            if(studentList.get(i).getFirstName().contains(name))
+        if(studentList != null) {
+            for (int i = 0; i<studentList.size(); i++)
             {
-                studentList.add(studentList.get(i));
-            }
-			
-			
-            if(studentList.get(i).getLastName().contains(name))
-            {
-                studentList.add(studentList.get(i));
+                if(studentList.get(i).getFirstName().contains(name))
+                {
+                    students.add(studentList.get(i));
+
+                }
+
+
+                if(studentList.get(i).getLastName().contains(name))
+                {
+                    students.add(studentList.get(i));
+                }
             }
         }
         return students;

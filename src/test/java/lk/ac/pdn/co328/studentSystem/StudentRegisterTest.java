@@ -92,4 +92,43 @@ public class StudentRegisterTest {
         expected.add(7);
         Assert.assertTrue(numbers.equals(expected));
     }
+
+    // Test findStudentByName method with a part of the firstname as input
+    @Test
+    public void testFindStudentsByNameFirstName() throws Exception {
+        System.out.println("Testing findStudentByName method with a part of the firstname");
+
+        ArrayList<Student> students = register.findStudentsByName("ima");
+        ArrayList<Student> expected = new ArrayList<Student>();
+        expected.add(new Student(2, "nimal", "kumara"));
+        Assert.assertTrue(students.size() == expected.size() && students.get(0).getFirstName().equals(expected.get(0).getFirstName()));
+    }
+
+    // Test findStudentByName method with a part of the lastname as input
+    @Test
+    public void testFindStudentsByNameLastName() throws Exception {
+        System.out.println("Testing findStudentByName method with a part of the lastname");
+
+        ArrayList<Student> students = register.findStudentsByName("umar");
+        ArrayList<Student> expected = new ArrayList<Student>();
+        expected.add(new Student(2, "nimal", "kumara"));
+        Assert.assertTrue(students.size() == expected.size() && students.get(0).getFirstName().equals(expected.get(0).getFirstName()));
+    }
+
+    // Test findStudentByName method with a non-matching input
+    @Test
+    public void testFindStudentsByNameNoEntry() throws Exception {
+        System.out.println("Testing findStudentByName method with a non matching string");
+
+        ArrayList<Student> students = register.findStudentsByName("zzz");
+        Assert.assertTrue(students.isEmpty());
+    }
+
+    @Test
+    public void testReset() throws Exception {
+        System.out.println("Testing reset method");
+
+        register.reset();
+        Assert.assertNull(register.getStudentList());
+    }
 }
