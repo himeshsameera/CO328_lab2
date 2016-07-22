@@ -1,10 +1,10 @@
 package lk.ac.pdn.co328.studentSystem;
-import  java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class RegistrationSystem
 {
-    static Scanner stdin = new Scanner(System.in);
+    static Scanner stdin = new Scanner(System.in);;
     static StudentRegister register = new StudentRegister();
     public static void main(String[] args)
     {
@@ -29,12 +29,6 @@ public class RegistrationSystem
                     case 3:
                         viewStudent();
                         break;
-                    case 4:
-                        findStudentsByName();
-                        break;
-                    case 5:
-                        cleanRegister();
-                        break;
                     default:
                         System.out.println("Please select an available feature");
                 }
@@ -44,29 +38,6 @@ public class RegistrationSystem
                 System.out.println("Invalid input. Please enter a number.");
             }
         }
-    }
-
-    private static void cleanRegister() {
-        register.reset();
-    }
-
-    private static void findStudentsByName() {
-        ArrayList<Student> students = new ArrayList<Student>();
-        System.out.println("Enter the name:");
-        String name = stdin.nextLine();
-
-        try {
-            students = register.findStudentsByName(name);
-        }catch (Exception ex) {
-            System.out.println("Errors happening when searching students by name: " + ex.getMessage());
-            return;
-        }
-
-        for (Student student: students) {
-            System.out.println("Student ID : " + student.getId());
-        }
-
-
     }
 
     private static void printSelection()
