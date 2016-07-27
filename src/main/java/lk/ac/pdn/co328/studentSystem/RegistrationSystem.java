@@ -1,10 +1,11 @@
 package lk.ac.pdn.co328.studentSystem;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class RegistrationSystem
 {
-    static Scanner stdin = new Scanner(System.in);;
+    static Scanner in = new Scanner(System.in);;
     static StudentRegister register = new StudentRegister();
     public static void main(String[] args)
     {
@@ -14,7 +15,7 @@ public class RegistrationSystem
             try
             {
                 printSelection();
-                int command = Integer.parseInt(stdin.nextLine());
+                int command = Integer.parseInt(in.nextLine());
                 switch (command)
                 {
                     case 0:
@@ -27,6 +28,12 @@ public class RegistrationSystem
                         removeStudent();
                         break;
                     case 3:
+                        viewStudent();
+                        break;
+					case 4:
+                        viewStudent();
+                        break;
+					case 5:
                         viewStudent();
                         break;
                     default:
@@ -60,7 +67,7 @@ public class RegistrationSystem
         System.out.println("Enter reg number");
         try
         {
-            regNo = Integer.parseInt(stdin.nextLine());
+            regNo = Integer.parseInt(in.nextLine());
         }
         catch (Exception ex)
         {
@@ -69,9 +76,9 @@ public class RegistrationSystem
         }
 
         System.out.println("Enter first name");
-        String firstName = stdin.nextLine();
+        String firstName = in.nextLine();
         System.out.println("Enter last name");
-        String lastName = stdin.nextLine();
+        String lastName = in.nextLine();
 
         Student student = new Student(regNo,firstName,lastName);
         try
@@ -90,7 +97,7 @@ public class RegistrationSystem
         System.out.println("Enter reg number");
         try
         {
-            regNo = Integer.parseInt(stdin.nextLine());
+            regNo = Integer.parseInt(in.nextLine());
         }
         catch (Exception ex)
         {
@@ -114,7 +121,7 @@ public class RegistrationSystem
         System.out.println("Enter reg number");
         try
         {
-            regNo = Integer.parseInt(stdin.nextLine());
+            regNo = Integer.parseInt(in.nextLine());
         }
         catch (Exception ex)
         {
@@ -143,4 +150,47 @@ public class RegistrationSystem
             System.out.println("Student not found");
         }
     }
+	
+	private static void findByName()
+     {
+         System.out.println("Enter reg number");
+         
+         String name = in.nextLine();
+         
+ 
+         ArrayList<Student> students;
+         try
+         {
+             students = register.findStudentsByName(name);
+         }
+         catch (Exception ex)
+         {
+             System.out.println("Error in searching the name : " + ex.getMessage());
+             return;
+         }
+ 
+        if(students != null)
+         {
+             for (Student st: students){
+                 System.out.println("ENO : " + st.getId());
+                 System.out.println("First name : " + st.getFirstName());
+                 System.out.println("Last name : " + st.getLastName());
+                 System.out.println("");
+             }
+         }
+         else
+         {
+             System.out.println("No Student found");
+         }
+     }
+ 
+     private static void cleanRegister()
+     {
+         System.out.println("Clean(Y) cancel(N)? (Y\\N)");
+		 String response=in.nextLine();
+         if (response.equals("Y"))
+         {
+             register.reset();
+         }
+     }
 }
