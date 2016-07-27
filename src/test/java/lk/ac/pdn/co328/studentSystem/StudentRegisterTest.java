@@ -92,8 +92,8 @@ public class StudentRegisterTest {
         int i = 0;
         try {
             register.addStudent(new Student(1, "ruwan", "tharaka"));
-            register.addStudent(new Student(2, "nimal", "ruwan"));
-            register.addStudent(new Student(5, "nimmi", "chamini"));
+            register.addStudent(new Student(2, "supun", "sampath"));
+            register.addStudent(new Student(5, "hasini", "shehara"));
         } catch (Exception ex) {
             Assert.fail("Adding student failed");
         }
