@@ -32,7 +32,9 @@ public class StudentRegister
     //Finds the student with the given registration number
     public Student findStudent(int regNo)
     {
-        for (int i = 0; i<studentList.size(); i++)
+        int i;
+
+        for (i = 0; i<studentList.size(); i++)
         {
             if(studentList.get(i).getId() == regNo)
             {
@@ -45,7 +47,7 @@ public class StudentRegister
     // Cleans all the data from the student register
     public void reset()
     {
-        studentList = null;
+        studentList.clear();
     }
 
     // Finds all the students that has the given name as a part of their name.
@@ -56,11 +58,11 @@ public class StudentRegister
         {
             if(studentList.get(i).getFirstName().contains(name))
             {
-                studentList.add(studentList.get(i));
+                students.add(studentList.get(i));
             }
 			
 			
-            if(studentList.get(i).getLastName().contains(name))
+            if(students.get(i).getLastName().contains(name))
             {
                 studentList.add(studentList.get(i));
             }
@@ -78,4 +80,5 @@ public class StudentRegister
         }
         return  regNumbers;
     }
+
 }
