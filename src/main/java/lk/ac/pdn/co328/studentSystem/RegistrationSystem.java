@@ -1,6 +1,7 @@
 package lk.ac.pdn.co328.studentSystem;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class RegistrationSystem
 {
@@ -28,6 +29,12 @@ public class RegistrationSystem
                         break;
                     case 3:
                         viewStudent();
+                        break;
+                    case 4:
+                        viewStudentbyName();
+                        break;
+                    case 5:
+                        registerclean();
                         break;
                     default:
                         System.out.println("Please select an available feature");
@@ -142,5 +149,43 @@ public class RegistrationSystem
         {
             System.out.println("Student not found");
         }
+    }
+
+    private static void viewStudentbyName(){
+        String name;
+        System.out.println("Enter name");
+        try {
+            name = stdin.nextLine();
+        }
+        catch (Exception ex) {
+            System.out.println("Invalid inputs.");
+            return;
+        }
+
+        ArrayList<Student> student;
+        try {
+            student = register.findStudentsByName(name);;
+            System.out.println("Student found");
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Error in searching student : " + ex.getMessage());
+            return;
+        }
+
+        if(student != null) {
+            for(int i=0; i<student.size(); i++){
+                System.out.println(student.get(i).getId());
+                System.out.println(student.get(i).getFirstName());
+                System.out.println(student.get(i).getLastName());
+            }
+        }
+        else {
+            System.out.println("Student not found");
+        }
+    }
+
+    private static void registerclean(){
+        register.reset();
     }
 }
