@@ -52,17 +52,11 @@ public class StudentRegister
     public ArrayList<Student> findStudentsByName(String name)
     {
         ArrayList<Student> students = new ArrayList<Student>();
-        for (int i = 0; i<studentList.size(); i++)
+        for (Student student:studentList)
         {
-            if(studentList.get(i).getFirstName().contains(name))
+            if ((student.getFirstName()+" "+student.getLastName()).contains(name))
             {
-                studentList.add(studentList.get(i));
-            }
-			
-			
-            if(studentList.get(i).getLastName().contains(name))
-            {
-                studentList.add(studentList.get(i));
+                students.add(student);
             }
         }
         return students;
