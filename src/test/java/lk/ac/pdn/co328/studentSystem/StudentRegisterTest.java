@@ -95,4 +95,47 @@ public class StudentRegisterTest {
         expected.add(5);
         Assert.assertTrue(numbers.equals(expected));
     }
+
+    @Test
+    public void testfindStudentByName()
+    {
+        Student student1 = new Student(1, "ruwan", "tharaka");
+        Student student2 = new Student(2, "nimal", "kumara");
+        Student student3 = new Student(5, "gayan", "chamara");
+
+        try
+        {
+            register.addStudent(student1);
+            register.addStudent(student2);
+            register.addStudent(student3);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        Assert.assertArrayEquals(new Student[]{student1,student2,student3}, register.findStudentsByName("testing").toArray());
+        Assert.assertEquals(0, register.findStudentsByName("No result").size());
+    }
+
+    @Test
+    public void testClear(){
+        Student student1 = new Student(1, "ruwan", "tharaka");
+        Student student2 = new Student(2, "nimal", "kumara");
+        Student student3 = new Student(5, "gayan", "chamara");
+        try
+        {
+            register.addStudent(student1);
+            register.addStudent(student2);
+            register.addStudent(student3);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        Assert.assertTrue(register.getAllRegistrationNumbers().size()>0);
+        register.reset();
+        Assert.assertTrue(register.getAllRegistrationNumbers().size()==0);
+    }
 }
